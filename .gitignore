@@ -3,3 +3,4 @@
 *.ctxt
 #Ignore the package.bluej file
 package.bluej
+.DS_Store
