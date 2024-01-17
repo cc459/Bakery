@@ -1,6 +1,7 @@
 # Ignore anything that ends with .class or .ctxt
 *.class
 *.ctxt
-#Ignore the package.bluej file
+# Ignore the package.bluej file
 package.bluej
+# Helpful for Macs: ignore the ds store file
 .DS_Store
