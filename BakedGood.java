@@ -34,6 +34,14 @@ public class BakedGood
         return this.price * count;
     }
 
+    public void printRecipe() {
+        String[] ingredients = this.recipe.split(", ");
+        System.out.println("Ingredients:");
+        for (String ingredient : ingredients) {
+            System.out.println(ingredient);
+        }
+    }
+
     public String toString() {
         return "Baked good: " + this.name + " (" + this.quantity + " @ $" + this.price + ")";    }
 
@@ -52,7 +60,9 @@ public class BakedGood
         System.out.println(croissant);
         
         //Purchasing too many should throw the error
-        croissant.purchase(10);
+        //croissant.purchase(10);
+
+        croissant.printRecipe();
 
     }
 
