@@ -1,69 +1,50 @@
-package bakery;
-/**
- * Represents a single baked good in our bakery's inventory
- */
-public class BakedGood
-{
-    // Instance variables
-    private String name;
-    private String recipe;
-    private double price;
-    private int quantity;
+class BakedGood:
+    """
+    Represents a single baked good in our bakery's inventory
+    """
 
-    public BakedGood(String name, String recipe, double price, int quantity) 
-    {
-        // Initialize instance variables
-        this.name = name;
-        this.recipe = recipe;
-        this.price = price;
-        this.quantity = quantity;
-    }
+    def __init__(self, name, recipe, price, quantity):
+        self.name = name
+        self.recipe = recipe
+        self.price = price
+        self.quantity = quantity
 
-    // Modify the quantity
-    public void increaseQuantity(int count) 
-    {
-        this.quantity += count;
-    }
+    # Modify the quantity
+    def increase_quantity(self, count):
+        self.quantity += count
 
-    // Instance method to buy some baked goods
-    public double purchase(int count) {
-        if (count > this.quantity) {
-            throw new IllegalArgumentException("You cannot buy more than our current inventory");
-        }
-        this.quantity -= count;
-        return this.price * count;
-    }
+    # Buy some baked goods
+    def purchase(self, count):
+        if count > self.quantity:
+            raise ValueError("You cannot buy more than our current inventory")
+        self.quantity -= count
+        return self.price * count
 
-    public void printRecipe() {
-        String[] ingredients = this.recipe.split(", ");
-        System.out.println("Ingredients:");
-        for (String ingredient : ingredients) {
-            System.out.println(ingredient);
-        }
-    }
+    def print_recipe(self):
+        ingredients = self.recipe.split(", ")
+        print("Ingredients:")
+        for ingredient in ingredients:
+            print(ingredient)
 
-    public String toString() {
-        return "Baked good: " + this.name + " (" + this.quantity + " @ $" + this.price + ")";    }
+    def __str__(self):
+        return f"Baked good: {self.name} ({self.quantity} @ ${self.price})"
 
-    public static void main(String[] args) {
-        BakedGood croissant = new BakedGood("croissant", "butter, flour, laminate, yum", 20.0, 0);
 
-        // Bake a dozen croissants
-        croissant.increaseQuantity(12);
-        System.out.println(croissant);
+if __name__ == "__main__":
+    croissant = BakedGood("croissant", "butter, flour, laminate, yum", 20.0, 0)
 
-        // Bake 3 more croissants with the leftover dough
-        // croissant.increaseQuantity(3);
-        // System.out.println(croissant);
-        
-        System.out.println(croissant.purchase(3));
-        System.out.println(croissant);
-        
-        //Purchasing too many should throw the error
-        //croissant.purchase(10);
+    # Bake a dozen croissants
+    croissant.increase_quantity(12)
+    print(croissant)
 
-        croissant.printRecipe();
+    # Bake 3 more croissants with the leftover dough
+    # croissant.increase_quantity(3)
+    # print(croissant)
 
-    }
+    print(croissant.purchase(3))
+    print(croissant)
 
-}
+    # Purchasing too many should throw the error
+    # croissant.purchase(10)
+
+    croissant.print_recipe()
